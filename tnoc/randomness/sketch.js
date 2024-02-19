@@ -1,38 +1,54 @@
 class Walker {
-    constructor() {
-        this.x = width / 2;
-        this.y = height / 2;
-    }
+  constructor() {
+    this.x = width / 2;
+    this.y = height / 2;
+  }
 
-    show() {
-        stroke(0);
-        strokeWeight(3);
-        point(this.x, this.y);
-    }
+  show() {
+    stroke(0);
+    strokeWeight(3);
+    point(this.x, this.y);
+  }
 
-    step() {
-        const choice = floor(random(4));
-        if (choice === 0) {
-            this.x++;
-          } else if (choice === 1) {
-            this.x--;
-          } else if (choice === 2) {
-            this.y++;
-          } else {
-            this.y--;
-          }
+  stepTowardsMouse() {
+    let r = random(1)
+    if (r < 0.5) {
+      mouseX > this.x ? this.x++ : this.x--;
+      mouseY > this.y ? this.y++ : this.y--;
+    } else if (r < 0.6) {
+      this.x--;
+    } else if (r < 0.7) {
+      this.y++;
+    } else if (r < 0.8) {
+      this.x++;
+    } else {
+      this.y--;
     }
+  }
+
+  stepTowardsRight() {
+    let r = random(1);
+    if (r < 0.4) {
+      this.x++;
+    } else if (r < 0.6) {
+      this.x--;
+    } else if (r < 0.8) {
+      this.y++;
+    } else {
+      this.y--;
+    }
+  }
 }
 
 let walker;
 
 function setup() {
-    createCanvas(640, 240);
-    walker = new Walker();
-    background(255);
+  createCanvas(windowWidth, windowHeight);
+  walker = new Walker();
+  background(255);
 }
 
 function draw() {
-    walker.step();
-    walker.show();
+  walker.stepTowardsMouse();
+  walker.show();
 }

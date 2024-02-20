@@ -10,6 +10,11 @@ class Walker {
     point(this.x, this.y);
   }
 
+  stepBasic() {
+    this.x += random(-1, 1);
+    this.y += random(-1, 1);
+  }
+
   stepTowardsMouse() {
     let r = random(1)
     if (r < 0.5) {
@@ -38,6 +43,21 @@ class Walker {
       this.y--;
     }
   }
+
+  stepGaussian() {
+    this.x += randomGaussian(0, -1);
+    this.y += randomGaussian(0, 1);
+  }
+}
+
+function paintSplatter() {
+  let x = randomGaussian(width/2, 100);
+  let y = randomGaussian(height/2, 100);
+  let rgb = Array.from({length: 3}, () => randomGaussian(200, 100))
+
+  noStroke();
+  fill(rgb);
+  circle(x, y, random(40));
 }
 
 let walker;
@@ -49,6 +69,8 @@ function setup() {
 }
 
 function draw() {
-  walker.stepTowardsMouse();
+  walker.stepGaussian();
   walker.show();
+  
+  //paintSplatter();
 }

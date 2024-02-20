@@ -2,6 +2,8 @@ class Walker {
   constructor() {
     this.x = width / 2;
     this.y = height / 2;
+    this.xOffset = 0
+    this.yOffset = 10000
   }
 
   show() {
@@ -48,6 +50,14 @@ class Walker {
     this.x += randomGaussian(0, -1);
     this.y += randomGaussian(0, 1);
   }
+
+  stepPerlinNoise() {
+    this.x = map(noise(this.xOffset), 0, 1, 0, width);
+    this.y = map(noise(this.yOffset), 0, 1, 0, height);
+
+    this.xOffset += 0.06;
+    this.yOffset += 0.07;
+  }
 }
 
 function paintSplatter() {
@@ -64,12 +74,12 @@ let walker;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  walker = new Walker();
   background(255);
+  walker = new Walker();
 }
 
 function draw() {
-  walker.stepGaussian();
+  walker.stepPerlinNoise();
   walker.show();
   
   //paintSplatter();

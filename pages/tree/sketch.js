@@ -17,7 +17,7 @@ class Tree {
       this.y -= 0.5;
     }
 
-    
+
       // { 
       //   translate(0, -height/10); // move the space upwards
       //   rotate(random(-0.05, 0.05));  // random wiggle
@@ -45,7 +45,7 @@ class Tree {
 let tree;
 
 function setup() {
-  createCanvas(windowWidth-20, windowHeight-20);
+  createCanvas(windowWidth, windowHeight);
   background(255);
   tree = new Tree();
 }

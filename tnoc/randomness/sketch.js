@@ -2,8 +2,8 @@ class Walker {
   constructor() {
     this.x = width / 2;
     this.y = height / 2;
-    this.xOffset = 0
-    this.yOffset = 10000
+    this.xOffset = 0;
+    this.yOffset = 10000;
   }
 
   show() {

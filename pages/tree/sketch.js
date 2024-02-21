@@ -1,9 +1,23 @@
 class Tree {
-  constructor() {}
+  constructor() {
+    this.x = width/2;
+    this.y = height - 20;
+  }
 
-  branch(depth = 0){ 
-    if (depth < 10) {
-      line(0, 0, 0, -height/5); // trunk
+  show() {
+    stroke(0);
+    strokeWeight(15);
+    point(this.x, this.y);
+  }
+
+  branch() {
+    const trunkHeight = height - 150;
+
+    if (this.y >= trunkHeight) {
+      this.y -= 0.5;
+    }
+
+    
       // { 
       //   translate(0, -height/10); // move the space upwards
       //   rotate(random(-0.05, 0.05));  // random wiggle
@@ -25,7 +39,6 @@ class Tree {
       //     branch(depth);
       //   }
       // }
-    }
   }
 }
 
@@ -38,7 +51,6 @@ function setup() {
 }
 
 function draw() {
-  strokeWeight(10);
-  translate(width/2, height-20);
+  tree.show();
   tree.branch();
 }
